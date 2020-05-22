@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block list %}
+<style>
+    .h1l {
+
+        left: 12%;
+        top: -5%;
+    }
+    .login {
+        height: 600px;
+    }
+
+</style>
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="#">Support</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="/accounts/logout/">log out</a></li>
+
+    {% else %}
+    <li><a href="/accounts/login/#login">login</a></li>
+    <li class="active"><a href="/accounts/signup/#signup">sign up</a></li>
+    {% endif %}
+</ul>
+
+{% endblock %}
+
+
+{% block base %}
+<div class="content">
+    <div class="sidebar">
+        <div class="login">
+            <h2 class='h1l' id = 'signup'>SIGN UP HERE</h2>
+            <form action="" method="POST" onsubmit="return validate()">
+           {% csrf_token %}
+
+                <input id=sp name="name" type="text" placeholder="your name here" /><br>
+                <input id=sp2 name="user_name" type="text" placeholder="username(unique name)" /><br>
+                <input id=sp2 name="email" type="email" placeholder="your email" /><br>
+                <input id=sp2 name="password" type="password" placeholder="new password" /><br>
+                <input id=sp2 name="repassword" type="password" placeholder="re-enter password" /><br>
+                <input id="sp3" type="submit" value="register" />
+            </form>
+            <h4 class="lform"><a href="/accounts/login/#login"> Have an account click here..</a></h4>
+            {%for message in messages%}
+
+            <h4 class = "lform">*{{message}}</h4>
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

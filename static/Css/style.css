@@ -91,7 +91,7 @@ ul,
 
 /* header */
 .header {
-    background: url(/static/images/header_bg.jpg) repeat-x center top;
+    background: url(/static/images/header_bg1.jpg) repeat-x center top;
 }
 
 .header_resize {
@@ -135,7 +135,7 @@ ul,
 .menu_nav ul li.active a,
 .menu_nav ul li a:hover {
     color: #00b2e8;
-    background: url(/static/images/menu_a.gif) no-repeat center top;
+    background: url(/static/images/menu_a.png) no-repeat center top;
 }
 
 /* content */
@@ -171,6 +171,7 @@ ul,
 .content .sidebar {
     float: right;
     width: 276px;
+    margin-right: 40%;
 }
 
 ul.sb_menu,
@@ -345,4 +346,76 @@ ol li textarea {
 
 ol li .send {
     margin: 16px 0 0 0;
+}
+
+.login{
+    box-shadow: 10px 10px 10px #000, -10px -10px 10px #000;
+    width: 300px;
+    height: 450px;
+    background: #fff;
+    color: #000;
+    /*top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);*/
+    box-sizing: border-box;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#sp{
+    position: relative;
+    border: none;
+    background: transparent;
+    outline: none;
+    border-bottom: 1px solid black;
+    height: 40px;
+    color: #000;
+    font-size: 15px;
+    margin: 20px;
+    margin-top: -15%;
+}
+#sp2{
+    position: relative;
+    border: none;
+    background: transparent;
+    outline: none;
+    border-bottom: 1px solid black;
+    height: 40px;
+    color: #000;
+    font-size: 15px;
+    margin: 20px;
+}
+#sp3{
+    width: 60%;
+    height: 30px;
+    position: relative;
+    left: 22%;
+    border: none;
+    background: blue;
+    color: #ffb;
+    font-size: 18px;
+    border-radius: 20px;
+    outline: none;
+}
+#sp3:hover{
+    cursor: pointer;
+    background: #adcaf7;
+    color: black;
+}
+.h1l{
+
+    font-style: italic;
+    color: red;
+    position: relative;
+    top:-11%;
+    cursor: default;
+}
+
+.lform a{
+    color: #adcaf7;
+
+}
+.lform {
+    color: red;
 }

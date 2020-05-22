@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+
+{% block list %}
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="#">Support</a></li>
+    <li><a href="#">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+
+    {% if user.is_authenticated %}
+    <li><a href="/accounts/logout/">log out</a></li>
+
+    {% else %}
+    <li class="active"><a href="/accounts/login/#login">login</a></li>
+    <li><a href="/accounts/signup/#signup">sign up</a></li>
+    {% endif %}
+</ul>
+
+{% endblock %}
+
+
+{% block base %}
+<div class="content">
+    <div class="sidebar">
+        <div class="login">
+            <h1 class='h1l' id="login">LOGIN HERE</h1>
+            <form action="" method="post" onsubmit="return validate()">
+                {% csrf_token %}
+
+                <input id=sp name="user_name" type="text" placeholder="username" /><br>
+                <input id=sp2 name="password" type="password" placeholder="password" /></br>
+                <input id="sp3" type="submit" value="login" />
+            </form>
+            <h5 class="lform"><a href="/accounts/signup/#signup">don't have account click here..</a></h5>
+            <h5 class="lform"><a>forget password</a></h5>
+            {%for message in messages%}
+
+            <h4 class="lform">*{{message}}</h4>
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

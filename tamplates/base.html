@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <title>E-library</title>
+    <meta charset="UTF-8" />
+    <link href="{% static 'Css/style.css' %}" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{% static 'js/cufon-yui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/arial.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/cuf_run.js' %}"></script>
+</head>
+
+
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="header_resize">
+                <div class="menu_nav">
+                    {% block list %}
+
+
+
+                    {% endblock %}
+                    <div class="clr"></div>
+                </div>
+                <div class="clr"></div>
+                <div class="logo">
+                    <h1><a href="#">R.S.M.T. Library<br />
+                            <small>Easialy issue and search your favroite book</small></a></h1>
+                </div>
+            </div>
+        </div>
+
+        {% block base %}
+
+        {% endblock %}
+
+        <br><br><br><br><br>
+
+        <div class="fbg">
+            <div class="fbg_resize">
+                <div class="col c1">
+                    <h2>About</h2>
+
+                </div>
+
+                <div class="col c3">
+                    <h2>Contact</h2>
+
+                    <p><strong>Phone:</strong> +1234567<br />
+                        <strong>Address:</strong> 123 TemplateAccess Rd<br />
+                        <strong>E-mail:</strong> <a href="#">info@example.com</a></p>
+                </div>
+                <div class="clr"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer_resize">
+
+                <ul class="fmenu">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="support.html">Support</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contacts</a></li>
+                </ul>
+                <div class="clr"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
