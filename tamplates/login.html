@@ -2,15 +2,24 @@
 
 
 {% block list %}
+<style>
+    .content .sidebar {
+        width: 500px;
+        float: right;
+        margin-right: 30%;
 
+    }
+
+</style>
 <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="#">Support</a></li>
+    <li><a href="/">Home</a></li <li><a href="#">Support</a></li>
     <li><a href="#">About Us</a></li>
     <li><a href="#">Contact Us</a></li>
 
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
+    <li><a href="/profile"> hello {{user.first_name}}</a></li>
+    <li><a href="/profile">view profile</a></li>
 
     {% else %}
     <li class="active"><a href="/accounts/login/#login">login</a></li>

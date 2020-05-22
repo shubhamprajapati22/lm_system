@@ -8,6 +8,8 @@
     <li><a href="#">Contact Us</a></li>
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
+    <li><a href = "/profile">      hello-  {{user.studentinfo.roll_no}}</a></li>
+    <li><a href = "/profile">view profile</a></li>
 
     {% else %}
     <li><a href="/accounts/login/#login">login</a></li>

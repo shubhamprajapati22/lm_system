@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from django.http import HttpResponse
+from .models import StudentInfo
 
 # Create your views here.
 
 def login(request):
+
+    if request.user.is_authenticated:
+        return HttpResponse(status = 400)
 
     if request.method == 'POST':
         username = request.POST['user_name']
@@ -24,10 +29,18 @@ def login(request):
 
 def signup(request):
 
+    if request.user.is_authenticated:
+        return HttpResponse(status = 400)
+
     if request.method == 'POST':
+        libid = request.POST['libid']
+        roll_no = request.POST['roll_no']
         name = request.POST['name']
         username = request.POST['user_name']
         email = request.POST['email']
+        course = request.POST['course']
+        sem = request.POST['sem']
+        section = request.POST['section']
         password = request.POST['password']
         repassword = request.POST['repassword']
 
@@ -44,7 +57,9 @@ def signup(request):
             return render(request, 'signup.html')
 
         user = User.objects.create_user(first_name=name, username=username, email=email,password=password)
-        user.save();
+        studentinfo = StudentInfo.objects.create(user=user, libid=libid, roll_no=roll_no, course=course, sem=sem, section=section)
+        user.save()
+        studentinfo.save()
 
         return redirect('/accounts/login/#login')
 
@@ -56,5 +71,8 @@ def signup(request):
 
 
 def logout(request):
+    if request.user.is_authenticated == False:
+        return HttpResponse(status = 400)
+
     auth.logout(request)
     return redirect('/')

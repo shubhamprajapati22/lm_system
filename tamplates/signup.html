@@ -3,13 +3,14 @@
 
 {% block list %}
 <style>
-    .h1l {
+   .h1l {
 
-        left: 12%;
+        left: 30%;
         top: -5%;
     }
     .login {
         height: 600px;
+        width: 550px;
     }
 
 </style>
@@ -21,6 +22,8 @@
     <li><a href="#">Contact Us</a></li>
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
+    <li><a href = "/profile">      hello {{user.first_name}}</a></li>
+    <li><a href = "/profile">view profile</a></li>
 
     {% else %}
     <li><a href="/accounts/login/#login">login</a></li>
@@ -39,10 +42,15 @@
             <form action="" method="POST" onsubmit="return validate()">
            {% csrf_token %}
 
-                <input id=sp name="name" type="text" placeholder="your name here" /><br>
-                <input id=sp2 name="user_name" type="text" placeholder="username(unique name)" /><br>
-                <input id=sp2 name="email" type="email" placeholder="your email" /><br>
-                <input id=sp2 name="password" type="password" placeholder="new password" /><br>
+                <input id=sp2 name="libid" type="text" placeholder="library id" />
+                <input id=sp2 name="roll_no" type="text" placeholder="roll no." />
+                <input id=sp name="name" type="text" placeholder="name" />
+                <input id=sp2 name="user_name" type="text" placeholder="username(unique name)" />
+                <input id=sp2 name="email" type="email" placeholder="email" />
+                <input id=sp2 name="course" type="text" placeholder="course" />
+                <input id=sp2 name="sem" type="text" placeholder="semester" />
+                <input id=sp2 name="section" type="text" placeholder="section" />
+                <input id=sp2 name="password" type="password" placeholder="new password" />
                 <input id=sp2 name="repassword" type="password" placeholder="re-enter password" /><br>
                 <input id="sp3" type="submit" value="register" />
             </form>
