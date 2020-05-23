@@ -3,11 +3,12 @@
 
 {% block list %}
 <style>
-   .h1l {
+    .h1l {
 
         left: 30%;
         top: -5%;
     }
+
     .login {
         height: 600px;
         width: 550px;
@@ -22,8 +23,8 @@
     <li><a href="#">Contact Us</a></li>
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
-    <li><a href = "/profile">      hello {{user.first_name}}</a></li>
-    <li><a href = "/profile">view profile</a></li>
+    <li><a href="/profile"> hello {{user.first_name}}</a></li>
+    <li><a href="/profile">view profile</a></li>
 
     {% else %}
     <li><a href="/accounts/login/#login">login</a></li>
@@ -38,18 +39,44 @@
 <div class="content">
     <div class="sidebar">
         <div class="login">
-            <h2 class='h1l' id = 'signup'>SIGN UP HERE</h2>
+            <h2 class='h1l' id='signup'>SIGN UP HERE</h2>
             <form action="" method="POST" onsubmit="return validate()">
-           {% csrf_token %}
+                {% csrf_token %}
 
                 <input id=sp2 name="libid" type="text" placeholder="library id" />
-                <input id=sp2 name="roll_no" type="text" placeholder="roll no." />
+                <input id=sp2 name="roll_no" type="number" placeholder="roll no." />
                 <input id=sp name="name" type="text" placeholder="name" />
                 <input id=sp2 name="user_name" type="text" placeholder="username(unique name)" />
                 <input id=sp2 name="email" type="email" placeholder="email" />
-                <input id=sp2 name="course" type="text" placeholder="course" />
-                <input id=sp2 name="sem" type="text" placeholder="semester" />
-                <input id=sp2 name="section" type="text" placeholder="section" />
+                <!--                     <input id=sp2 name="course" type="text" placeholder="course" />-->
+
+                <select name="course" id="course">
+                    <option value="null">COURSE</option>
+                    <option value="BCA">BCA</option>
+                    <option value="BBA">BBA</option>
+                    <option value="MCA">MCA</option>
+                    <option value="MBA">MBA</option>
+                </select>
+
+                <!--<input id=sp2 name="sem" type="text" placeholder="semester" />-->
+
+
+                <select name="sem" id="sem">
+                    <option value="0">SEMESTER</option>
+                    <option value="1">I</option>
+                    <option value="2">II</option>
+                    <option value="3">III</option>
+                    <option value="4">IV</option>
+                    <option value="5">V</option>
+                    <option value="6">VI</option>
+                </select>
+
+
+                <!-- <input id=sp2 name="section" type="text" placeholder="section" />-->
+                <label for="sec">SECTION : </label>
+                <input type="radio" name="section" id="sec" value="A">A
+                <input type="radio" name="section" id="sec" value="B">B
+
                 <input id=sp2 name="password" type="password" placeholder="new password" />
                 <input id=sp2 name="repassword" type="password" placeholder="re-enter password" /><br>
                 <input id="sp3" type="submit" value="register" />
@@ -57,7 +84,7 @@
             <h4 class="lform"><a href="/accounts/login/#login"> Have an account click here..</a></h4>
             {%for message in messages%}
 
-            <h4 class = "lform">*{{message}}</h4>
+            <h4 class="lform">*{{message}}</h4>
 
             {% endfor %}
 
@@ -66,5 +93,23 @@
     </div>
 </div>
 
+
+{% endblock %}
+
+{% block footer %}
+
+<li><a href="/">Home</a></li>
+<li><a href="#">Support</a></li>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Contact Us</a></li>
+{% if user.is_authenticated %}
+<li><a href="/accounts/logout/">log out</a></li>
+<li><a href="/profile"> hello- {{user.first_name}}</a></li>
+<li><a href="/profile">view profile</a></li>
+
+{% else %}
+<li><a href="/accounts/login/#login">login</a></li>
+<li class="active"><a href="/accounts/signup/#signup">sign up</a></li>
+{% endif %}
 
 {% endblock %}

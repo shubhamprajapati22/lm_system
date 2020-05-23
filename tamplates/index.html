@@ -8,8 +8,8 @@
     <li><a href="#">Contact Us</a></li>
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
-    <li><a href = "/profile">      hello-  {{user.studentinfo.roll_no}}</a></li>
-    <li><a href = "/profile">view profile</a></li>
+    <li><a href="/profile"> hello- {{user.first_name}}</a></li>
+    <li><a href="/profile">view profile</a></li>
 
     {% else %}
     <li><a href="/accounts/login/#login">login</a></li>
@@ -23,5 +23,23 @@
 {% block base %}
 
 
+
+{% endblock %}
+
+{% block footer %}
+
+<li class="active"><a href="/">Home</a></li>
+<li><a href="#">Support</a></li>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Contact Us</a></li>
+{% if user.is_authenticated %}
+<li><a href="/accounts/logout/">log out</a></li>
+<li><a href="/profile"> hello- {{user.first_name}}</a></li>
+<li><a href="/profile">view profile</a></li>
+
+{% else %}
+<li><a href="/accounts/login/#login">login</a></li>
+<li><a href="/accounts/signup/#signup">sign up</a></li>
+{% endif %}
 
 {% endblock %}

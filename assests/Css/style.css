@@ -170,8 +170,7 @@ ul,
 
 .content .sidebar {
     float: right;
-    width: 276px;
-    margin-right: 40%;
+    margin-right: 30%;
 }
 
 ul.sb_menu,
@@ -419,3 +418,16 @@ ol li .send {
 .lform {
     color: red;
 }
+
+#sem, #course, label {
+
+    width: 40%;
+    height: 30px;
+    border: none;
+    font-size: 14px;
+    outline: none;
+    border-bottom: 1px solid black;
+    margin: 20px;
+
+}
+
