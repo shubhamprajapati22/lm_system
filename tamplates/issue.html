@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block list %}
+<style>
+    .content .sidebar {
+        width: 500px;
+        float: right;
+        margin-right: 36%;
+
+    }
+
+    .login {
+        width: 650px;
+        height: 300px;
+    }
+
+</style>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/#about">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="/accounts/logout/">log out</a></li>
+    <li><a href="/profile"> hello- {{user.first_name}}</a></li>
+    <li><a href="/profile">view profile</a></li>
+    <li class="active"><a href="/books/issuebooks/">Issue Books</a></li>
+    <li><a href="/books/returnbooks/">return Books</a></li>
+
+    {% else %}
+    <li><a href="/accounts/login/#login">login</a></li>
+    <li><a href="/accounts/signup/#signup">sign up</a></li>
+    {% endif %}
+</ul>
+
+{% endblock %}
+
+
+{% block base %}
+
+<div class="content">
+    <div class="sidebar">
+        <div class="login">
+            <table class="books">
+                {% if request.session.re_issue == False and request.session.max_issue == False %}
+
+                <caption>ISSUE SUCCESSFULL</caption>
+                <tr>
+                    <th>book id</th>
+                    <th>books name</th>
+                    <th>Issue date</th>
+                    <th>Return date</th>
+                </tr>
+                <tr>
+                    <td>{{infos.code.code}}</td>
+                    <td>{{infos.code.name}}</td>
+                    <td>{{infos.issuedate.date}}</td>
+                    <td>{{infos.returndate.date}}</td>
+                </tr>
+                {% elif request.session.max_issue == True %}
+                <caption style="color: red">You have issue maximum number of books</caption>
+
+                {% else %}
+                <caption style="color: red">You can't issue one book <br>two times</caption>
+
+                {% endif %}
+            </table>
+            <a href="/books/issuebooks/" style="margin-left: 100px">return to issuebooks</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+<li><a href="/">Home</a></li>
+<li><a href="/about/#about">About Us</a></li>
+<li><a href="#">Contact Us</a></li>
+{% if user.is_authenticated %}
+<li><a href="/accounts/logout/">log out</a></li>
+<li><a href="/profile"> hello- {{user.first_name}}</a></li>
+<li><a href="/profile">view profile</a></li>
+<li class="active"><a href="/books/issuebooks/">Issue Books</a></li>
+
+{% else %}
+<li><a href="/accounts/login/#login">login</a></li>
+<li><a href="/accounts/signup/#signup">sign up</a></li>
+{% endif %}
+
+{% endblock %}

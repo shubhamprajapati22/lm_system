@@ -19,6 +19,7 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
+            request.session.set_expiry(0)
             return redirect('/')
         else:
             messages.error(request, "invalid username or password")
@@ -44,22 +45,32 @@ def signup(request):
         password = request.POST['password']
         repassword = request.POST['repassword']
 
+        if StudentInfo.objects.filter(libid = libid).exists():
+            messages.error(request, "library id is allready used")
+            return render(request, 'signup.html')
+
+        if StudentInfo.objects.filter(roll_no = roll_no).exists():
+            messages.error(request, "roll number is allready used")
+            return render(request, 'signup.html')
+
         if User.objects.filter(username=username).exists():
-            messages.info(request, "username is allready used")
+            messages.error(request, "username is allready used")
             return render(request, 'signup.html')
 
         if User.objects.filter(email=email).exists():
-            messages.info(request, "email is allready used")
+            messages.error(request, "email is allready used")
             return render(request, 'signup.html')
 
         if password != repassword:
-            messages.info(request, "invalid password")
+            messages.error(request, "invalid password")
             return render(request, 'signup.html')
 
         user = User.objects.create_user(first_name=name, username=username, email=email,password=password)
         studentinfo = StudentInfo.objects.create(user=user, libid=libid, roll_no=roll_no, course=course, sem=sem, section=section)
         user.save()
         studentinfo.save()
+
+        messages.success(request, "sign up successfull")
 
         return redirect('/accounts/login/#login')
 

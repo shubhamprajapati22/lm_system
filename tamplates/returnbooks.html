@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block list %}
+<style>
+    .content .sidebar {
+        width: 100%;
+        float: left;
+        margin-bottom: 120px;
+    }
+
+</style>
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about/#about">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+    {% if user.is_authenticated %}
+    <li><a href="/accounts/logout/">log out</a></li>
+    <li><a href="/profile"> hello- {{user.first_name}}</a></li>
+    <li><a href="/profile">view profile</a></li>
+    <li><a href="/books/issuebooks/">Issue Books</a></li>
+    <li class="active"><a href="/books/returnbooks/">return Books</a></li>
+
+
+    {% else %}
+    <li><a href="/accounts/login/#login">login</a></li>
+    <li><a href="/accounts/signup/#signup">sign up</a></li>
+    {% endif %}
+</ul>
+
+{% endblock %}
+
+
+
+{% block base %}
+
+<div class="content">
+    <div class="sidebar">
+
+        <table class="books">
+            <caption>issued books</caption>
+            <tr>
+                <th>book id</th>
+                <th>books name</th>
+                <th>Issue date</th>
+                <th>Return date</th>
+                <th>Remaining day</th>
+            </tr>
+
+
+            {% for issue in issues %}
+            <tr>
+                <td>{{issue.code.code}}</td>
+                <td>{{issue.code.name}}</td>
+                <td>{{issue.issuedate}}</td>
+                <td>{{issue.returndate}}</td>
+                <td>{{issue.remaining_days}}</td>
+                {% if issue.is_return == False %}
+                <td><form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name = "book_return" value="{{issue.code.code}}">
+                    <input type="submit" value="return">
+
+
+                    </form></td>
+
+                {% endif %}
+            </tr>
+            {%endfor%}
+        </table>
+
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+<li><a href="/">Home</a></li>
+
+<li><a href="/about/#about">About Us</a></li>
+<li><a href="#">Contact Us</a></li>
+{% if user.is_authenticated %}
+<li><a href="/accounts/logout/">log out</a></li>
+<li><a href="/profile"> hello- {{user.first_name}}</a></li>
+<li class="active"><a href="/profile">view profile</a></li>
+<li><a href="/books/issuebooks/">Issue Books</a></li>
+
+{% else %}
+<li><a href="/accounts/login/#login">login</a></li>
+<li><a href="/accounts/signup/#signup">sign up</a></li>
+{% endif %}
+
+{% endblock %}

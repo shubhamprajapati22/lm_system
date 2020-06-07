@@ -3,13 +3,15 @@
 {% block list %}
 <ul>
     <li class="active"><a href="/">Home</a></li>
-    <li><a href="#">Support</a></li>
-    <li><a href="#">About Us</a></li>
+    <li><a href="/about/#about">About Us</a></li>
     <li><a href="#">Contact Us</a></li>
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
     <li><a href="/profile"> hello- {{user.first_name}}</a></li>
     <li><a href="/profile">view profile</a></li>
+    <li><a href="/books/issuebooks/">Issue Books</a></li>
+    <li><a href="/books/returnbooks/">return Books</a></li>
+
 
     {% else %}
     <li><a href="/accounts/login/#login">login</a></li>
@@ -29,8 +31,7 @@
 {% block footer %}
 
 <li class="active"><a href="/">Home</a></li>
-<li><a href="#">Support</a></li>
-<li><a href="#">About Us</a></li>
+<li><a href="/about/#about">About Us</a></li>
 <li><a href="#">Contact Us</a></li>
 {% if user.is_authenticated %}
 <li><a href="/accounts/logout/">log out</a></li>

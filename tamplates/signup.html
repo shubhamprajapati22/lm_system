@@ -18,8 +18,7 @@
 
 <ul>
     <li><a href="/">Home</a></li>
-    <li><a href="#">Support</a></li>
-    <li><a href="#">About Us</a></li>
+    <li><a href="/about/#about">About Us</a></li>
     <li><a href="#">Contact Us</a></li>
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
@@ -81,10 +80,10 @@
                 <input id=sp2 name="repassword" type="password" placeholder="re-enter password" /><br>
                 <input id="sp3" type="submit" value="register" />
             </form>
-            <h4 class="lform"><a href="/accounts/login/#login"> Have an account click here..</a></h4>
+            <h4 class="lform"><a href="/accounts/login/#login"> Have an account, click here..</a></h4>
             {%for message in messages%}
 
-            <h4 class="lform">*{{message}}</h4>
+            <p class="{{message.tags}}">*{{message}}</p>
 
             {% endfor %}
 
@@ -99,8 +98,7 @@
 {% block footer %}
 
 <li><a href="/">Home</a></li>
-<li><a href="#">Support</a></li>
-<li><a href="#">About Us</a></li>
+<li><a href="/about/#about">About Us</a></li>
 <li><a href="#">Contact Us</a></li>
 {% if user.is_authenticated %}
 <li><a href="/accounts/logout/">log out</a></li>
