@@ -244,16 +244,16 @@ ul.ex_menu li a:hover {
 .fbg .c1 {
     padding: 0 16px 0 0;
     width: 296px;
+    position: relative;
+    left: 20%;
 }
 
-.fbg .c2 {
-    padding: 0 16px;
-    width: 240px;
-}
 
 .fbg .c3 {
     padding: 0 0 0 16px;
     width: 290px;
+    position: relative;
+    left: 20%;
 }
 
 .fbg .c1 img {
@@ -482,5 +482,6 @@ tr:hover {
     height: 2px;
     background-color: gray;
     position: relative;
-    bottom: 155px;
+    bottom: 168px;
 }
+

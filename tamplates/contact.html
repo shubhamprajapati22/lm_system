@@ -2,11 +2,11 @@
 
 {% block list %}
 <ul>
-    <li class="active"><a href="/" onclick="{prompt('Do you raly want to logout')}">Home</a></li>
+    <li><a href="/">Home</a></li>
     <li><a href="/about/#about">About Us</a></li>
-    <li><a href="/contact/">Contact Us</a></li>
+    <li class="active"><a href="/contact/">Contact Us</a></li>
     {% if user.is_authenticated %}
-    <li><a href="/accounts/logout/" onclick="{prompt('Do you raly want to logout')}">log out</a></li>
+    <li><a href="/accounts/logout/">log out</a></li>
     <li><a href="/profile"> hello- {{user.first_name}}</a></li>
     <li><a href="/profile">view profile</a></li>
     <li><a href="/books/issuebooks/">Issue Books</a></li>
@@ -24,7 +24,34 @@
 
 {% block base %}
 
+<style>
+    .abh {
+        align-items: center;
+        color: black;
+    }
 
+    .contact {
+        margin-left: 35%;
+        width: 30%;
+        align-items: center;
+
+    }
+    .ab {
+        text-align: left;
+        font-size: 15px;
+        margin-left: 26%;
+    }
+
+</style>
+<div class="contact">
+    <h1 class="abh">Contact</h1>
+    <br><br><br>
+    <p class="ab"><strong>Phone:</strong> +917007467347<br />
+        <strong>Address:</strong> RSMT (UP college campus)<br>varanasi 221002 UP<br />
+        <strong>E-mail:</strong> <a href="#">elibrary@rsmt.com</a></p>
+
+
+</div>
 
 {% endblock %}
 

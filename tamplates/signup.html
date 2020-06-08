@@ -19,7 +19,7 @@
 <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/about/#about">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
+    <li><a href="/contact/">Contact Us</a></li>
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
     <li><a href="/profile"> hello {{user.first_name}}</a></li>
@@ -99,7 +99,7 @@
 
 <li><a href="/">Home</a></li>
 <li><a href="/about/#about">About Us</a></li>
-<li><a href="#">Contact Us</a></li>
+<li><a href="/contact/">Contact Us</a></li>
 {% if user.is_authenticated %}
 <li><a href="/accounts/logout/">log out</a></li>
 <li><a href="/profile"> hello- {{user.first_name}}</a></li>

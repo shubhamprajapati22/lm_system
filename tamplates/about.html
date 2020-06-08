@@ -4,7 +4,7 @@
 <ul>
     <li><a href="/">Home</a></li>
     <li class="active"><a href="/about/">About Us</a></li>
-    <li><a href="#">Contact Us</a></li>
+    <li><a href="/contact/">Contact Us</a></li>
     {% if user.is_authenticated %}
     <li><a href="/accounts/logout/">log out</a></li>
     <li><a href="/profile"> hello- {{user.first_name}}</a></li>
@@ -45,7 +45,7 @@
     <br><br><br>
     <p class="ab">
         Library management system is a project which aims in developing a computerized system to maintain all the daily work of library. This project has many features which are generally not available in normal library management systems like facility of user login, facility of teachers and staff login and feature of admin login.<br><br>
-        It also has a facility of admin login through which the admin can monitor the whole system. Admin can add new books, remove books, manage number of books available in the library. Admin verify that which users can be active and available to login again. Admin can remove any student or staffs. He can block the users for certain days according to their unactual behaviour.<br><br>
+        It has a facility of admin login through which the admin can monitor the whole system. Admin can add new books, remove books, manage number of books available in the library. Admin verify that which users can be active and available to login again. Admin can remove any student or staffs. He can block the users for certain days according to their unactual behaviour.<br><br>
         It has facility that, where student after logging in their accounts can see list of available books, students can short these books according to there requirement. Student can issue their books directly on website and he/she can take their books by going to college library. Student can also return their books on website so another student can request for that book in waiting. Student can see their profile on website and see their overall history of books that he/she issued in past. Student can issue only maximum three books from library and he/she can’t issue one book two times. Student can see their book issue date and return date on their profile page. Student can see how many days left for return the book. A student can issue book only for 30 days.<br><br>
         Overall, this project of ours is being developed to help the students as well as staff
         of library to maintain the library in the best way possible and also reduce the human efforts.
@@ -60,7 +60,7 @@
 
 <li class="active"><a href="/">Home</a></li>
 <li><a href="/about/#about">About Us</a></li>
-<li><a href="#">Contact Us</a></li>
+<li><a href="/contact/">Contact Us</a></li>
 {% if user.is_authenticated %}
 <li><a href="/accounts/logout/">log out</a></li>
 <li><a href="/profile"> hello- {{user.first_name}}</a></li>
