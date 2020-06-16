@@ -7,23 +7,23 @@
         float: left;
         margin-bottom: 120px;
     }
+
 </style>
 
 <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about/#about">About Us</a></li>
-    <li><a href="/contact/">Contact Us</a></li>
+    <li><a href="/">HOME</a></li>
     {% if user.is_authenticated %}
-    <li><a href="/accounts/logout/">log out</a></li>
-    <li><a href="/profile"> hello- {{user.first_name}}</a></li>
-    <li class="active"><a href="/profile">view profile</a></li>
-     <li><a href="/books/issuebooks/">Issue Books</a></li>
-    <li><a href="/books/returnbooks/">return Books</a></li>
+    <li><a href="/books/issuebooks/">ISSUE BOOKS</a></li>
+    <li><a href="/books/returnbooks/">RETURN BOOKS</a></li>
+    <li><a href="/about/">ABOUT US</a></li>
+    <li><a href="/contact/">CONTACT US</a></li>
+    <li class="active"><a href="/profile">VIEW PROFILE</a></li>
+    <li onclick="return confirm('Do you want to log out')"><a href="/accounts/logout/">LOG OUT</a></li>
 
 
     {% else %}
-    <li><a href="/accounts/login/#login">login</a></li>
-    <li><a href="/accounts/signup/#signup">sign up</a></li>
+    <li><a href="/accounts/login/#login">LOGIN</a></li>
+    <li><a href="/accounts/signup/#signup">SIGN UP</a></li>
     {% endif %}
 </ul>
 
@@ -70,19 +70,28 @@
                 <th>books name</th>
                 <th>Issue date</th>
                 <th>Return date</th>
-                <th>Remaining day</th>
+                <th>Is Returned</th>
             </tr>
 
 
-                {% for issue in issues %}
-            <tr>
+            {% for issue in issues %}
+            {% if issue.is_return %}
+            <tr style="color: green">
                 <td>{{issue.code.code}}</td>
                 <td>{{issue.code.name}}</td>
                 <td>{{issue.issuedate}}</td>
                 <td>{{issue.returndate}}</td>
-                <td>{{issue.remaining_days}}</td>
+                <td>YES</td>
+                {% else %}
+            <tr style="color: orangered">
+                <td>{{issue.code.code}}</td>
+                <td>{{issue.code.name}}</td>
+                <td>{{issue.issuedate}}</td>
+                <td>{{issue.returndate}}</td>
+                <td>NO</td>
+                {% endif %}
             </tr>
-                {%endfor%}
+            {%endfor%}
         </table>
 
     </div>
@@ -97,18 +106,20 @@
 
 {% block footer %}
 
-<li><a href="/">Home</a></li>
-<li><a href="/about/#about">About Us</a></li>
-<li><a href="/contact/">Contact Us</a></li>
+<li><a href="/">HOME</a></li>
 {% if user.is_authenticated %}
-<li><a href="/accounts/logout/">log out</a></li>
-<li><a href="/profile"> hello- {{user.first_name}}</a></li>
-<li class="active"><a href="/profile">view profile</a></li>
- <li><a href="/books/issuebooks/">Issue Books</a></li>
+<li><a href="/books/issuebooks/">ISSUE BOOKS</a></li>
+<li><a href="/books/returnbooks/">RETURN BOOKS</a></li>
+<li><a href="/about/">ABOUT US</a></li>
+<li><a href="/contact/">CONTACT US</a></li>
+<li class="active"><a href="/profile">VIEW PROFILE</a></li>
+<li><a href="/profile"> HELLO, {{user.first_name}}</a></li>
+<li onclick="return confirm('Do you want to log out')"><a href="/accounts/logout/">LOG OUT</a></li>
+
 
 {% else %}
-<li><a href="/accounts/login/#login">login</a></li>
-<li><a href="/accounts/signup/#signup">sign up</a></li>
-{% endif %}
+<li><a href="/accounts/login/#login">LOGIN</a></li>
+<li><a href="/accounts/signup/#signup">SIGN UP</a></li>
+{% endif %}}
 
 {% endblock %}

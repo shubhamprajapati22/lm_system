@@ -1,7 +1,6 @@
-function confirm(){
+function confirmissue(){
 
-    alert("Do you want to issue this book");
-    return;
+    return confirm("Do you want to issue this book");
 
 }
 function sortTable(n) {

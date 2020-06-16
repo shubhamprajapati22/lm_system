@@ -11,20 +11,19 @@
 </style>
 
 <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about/#about">About Us</a></li>
-    <li><a href="/contact/">Contact Us</a></li>
+    <li><a href="/">HOME</a></li>
     {% if user.is_authenticated %}
-    <li><a href="/accounts/logout/">log out</a></li>
-    <li><a href="/profile"> hello- {{user.first_name}}</a></li>
-    <li><a href="/profile">view profile</a></li>
-    <li><a href="/books/issuebooks/">Issue Books</a></li>
-    <li class="active"><a href="/books/returnbooks/">return Books</a></li>
+    <li><a href="/books/issuebooks/">ISSUE BOOKS</a></li>
+    <li class="active"><a href="/books/returnbooks/">RETURN BOOKS</a></li>
+    <li><a href="/about/">ABOUT US</a></li>
+    <li><a href="/contact/">CONTACT US</a></li>
+    <li><a href="/profile">VIEW PROFILE</a></li>
+    <li onclick="return confirm('Do you want to log out')"><a href="/accounts/logout/">LOG OUT</a></li>
 
 
     {% else %}
-    <li><a href="/accounts/login/#login">login</a></li>
-    <li><a href="/accounts/signup/#signup">sign up</a></li>
+    <li><a href="/accounts/login/#login">LOGIN</a></li>
+    <li><a href="/accounts/signup/#signup">SIGN UP</a></li>
     {% endif %}
 </ul>
 
@@ -45,6 +44,7 @@
                 <th>Issue date</th>
                 <th>Return date</th>
                 <th>Remaining day</th>
+                <th style="border-right: none"></th>
             </tr>
 
 
@@ -56,13 +56,15 @@
                 <td>{{issue.returndate}}</td>
                 <td>{{issue.remaining_days}}</td>
                 {% if issue.is_return == False %}
-                <td><form action="" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name = "book_return" value="{{issue.code.code}}">
-                    <input type="submit" value="return">
+                <td class="issue">
+                    <form action="" method="post" class="issuebutton">
+                        {% csrf_token %}
+                        <input type="hidden" name="book_return" value="{{issue.code.code}}">
+                        <input type="submit" value="return">
 
 
-                    </form></td>
+                    </form>
+                </td>
 
                 {% endif %}
             </tr>
@@ -81,19 +83,20 @@
 
 {% block footer %}
 
-<li><a href="/">Home</a></li>
-
-<li><a href="/about/#about">About Us</a></li>
-<li><a href="/contact/">Contact Us</a></li>
+<li><a href="/">HOME</a></li>
 {% if user.is_authenticated %}
-<li><a href="/accounts/logout/">log out</a></li>
-<li><a href="/profile"> hello- {{user.first_name}}</a></li>
-<li class="active"><a href="/profile">view profile</a></li>
-<li><a href="/books/issuebooks/">Issue Books</a></li>
+<li><a href="/books/issuebooks/">ISSUE BOOKS</a></li>
+<li class="active"><a href="/books/returnbooks/">RETURN BOOKS</a></li>
+<li><a href="/about/">ABOUT US</a></li>
+<li><a href="/contact/">CONTACT US</a></li>
+<li><a href="/profile">VIEW PROFILE</a></li>
+<li><a href="/profile"> HELLO, {{user.first_name}}</a></li>
+<li onclick="return confirm('Do you want to log out')"><a href="/accounts/logout/">LOG OUT</a></li>
+
 
 {% else %}
-<li><a href="/accounts/login/#login">login</a></li>
-<li><a href="/accounts/signup/#signup">sign up</a></li>
+<li><a href="/accounts/login/#login">LOGIN</a></li>
+<li><a href="/accounts/signup/#signup">SIGN UP</a></li>
 {% endif %}
 
 {% endblock %}

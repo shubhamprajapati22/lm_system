@@ -2,27 +2,134 @@
 
 {% block list %}
 <ul>
-    <li class="active"><a href="/" onclick="{prompt('Do you raly want to logout')}">Home</a></li>
-    <li><a href="/about/#about">About Us</a></li>
-    <li><a href="/contact/">Contact Us</a></li>
     {% if user.is_authenticated %}
-    <li><a href="/accounts/logout/" onclick="{prompt('Do you raly want to logout')}">log out</a></li>
-    <li><a href="/profile"> hello- {{user.first_name}}</a></li>
-    <li><a href="/profile">view profile</a></li>
-    <li><a href="/books/issuebooks/">Issue Books</a></li>
-    <li><a href="/books/returnbooks/">return Books</a></li>
+    <li class="active"><a href="/">HOME</a></li>
+    <li><a href="/books/issuebooks/">ISSUE BOOKS</a></li>
+    <li><a href="/books/returnbooks/">RETURN BOOKS</a></li>
+    <li><a href="/about/">ABOUT US</a></li>
+    <li><a href="/contact/">CONTACT US</a></li>
+    <li><a href="/profile">VIEW PROFILE</a></li>
+    <li onclick="return confirm('Do you want to log out')"><a href="/accounts/logout/">LOG OUT</a></li>
+
 
 
     {% else %}
-    <li><a href="/accounts/login/#login">login</a></li>
-    <li><a href="/accounts/signup/#signup">sign up</a></li>
+    <li class="active"><a href="/">HOME</a></li>
+    <li><a href="/about/">ABOUT US</a></li>
+    <li><a href="/contact/">CONTACT US</a></li>
+    <li><a href="/accounts/login/#login">LOGIN</a></li>
+    <li><a href="/admin">ADMIN LOGIN</a></li>
+
+    <li><a href="/accounts/signup/#signup">SIGN UP</a></li>
     {% endif %}
 </ul>
+
 
 {% endblock %}
 
 
 {% block base %}
+<style>
+    .content .sidebar {
+        width: 100%;
+        float: left;
+        margin-bottom: 120px;
+    }
+
+</style>
+
+<div class="home">
+    <form class="example" action="{% if user.is_authenticated %}/books/issuebooks/{% endif %}" method="get">
+        <input type="text" placeholder="Search for books..." name="search_value" autocomplete="off">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+</div>
+{% if user.is_authenticated %}
+<div class="welcome">
+    <h2 class="glow">WELCOME Mr.{{user.first_name}} </h2>
+</div>
+{% endif %}
+<div class="content">
+    <div class="sidebar">
+
+        {% if user.is_authenticated %}
+
+        <table class="books">
+            <caption style="color: blue">Your Reserved Books</caption>
+            <tr>
+                <th>book id</th>
+                <th>books name</th>
+                <th>Issue date</th>
+                <th>Return date</th>
+                <th style="border-right: none">Remaining day</th>
+            </tr>
+
+
+            {% for issue in issues %}
+            <tr>
+                <td>{{issue.code.code}}</td>
+                <td>{{issue.code.name}}</td>
+                <td>{{issue.issuedate}}</td>
+                <td>{{issue.returndate}}</td>
+                <td style="border-right: none">{{issue.remaining_days}} Days left</td>
+            </tr>
+            {%endfor%}
+        </table>
+
+
+        {% else %}
+        <table class="books" id="myTable2">
+            <caption>BOOKS</caption>
+            <tr>
+                <th onclick="sortTable(0)">Book Id<i class="arrow down"></i></th>
+                <th onclick="sortTable(1)">Name <i class="arrow down"></i></th>
+                <th onclick="sortTable(2)">Author <i class="arrow down"></i></th>
+                <th onclick="sortTable(3)">Publication <i class="arrow down"></i></th>
+                <th colspan="2" class="issue">
+                    <form action="/" method="get" class="show">
+                        <input type="submit" value="Show All">
+
+                    </form>
+                </th>
+            </tr>
+            {% for book in books %}
+            <tr>
+                {% if book.no_of_copies == 0 %}
+                <td style="color: red">{{book.code}}</td>
+                <td style="color: red">{{book.name}}</td>
+                <td style="color: red">{{book.author}}</td>
+                <td style="color: red">{{book.publication}}</td>
+                <td style="color: red" colspan="2" class="issue">not availabe</td>
+                {% else %}
+                <td style="color: green">{{book.code}}</td>
+                <td style="color: green">{{book.name}}</td>
+                <td style="color: green">{{book.author}}</td>
+                <td style="color: green">{{book.publication}}</td>
+                <td style="color: green">availabe</td>
+
+                <!--                <td class="issue">
+
+                    <input type="button" value="Issue" onclick="location.href = '/accounts/login/'">
+
+                </td>-->
+                <td class="issue">
+                    <form action="/accounts/login/" method="get" class="issuebutton">
+                        <input type="submit" value="Issue">
+
+                    </form>
+                </td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% endif %}
+
+    </div>
+</div>
+
+
 
 
 
@@ -30,17 +137,25 @@
 
 {% block footer %}
 
-<li class="active"><a href="/">Home</a></li>
-<li><a href="/about/#about">About Us</a></li>
-<li><a href="/contact/">Contact Us</a></li>
 {% if user.is_authenticated %}
-<li><a href="/accounts/logout/">log out</a></li>
-<li><a href="/profile"> hello- {{user.first_name}}</a></li>
-<li><a href="/profile">view profile</a></li>
+<li class="active"><a href="/">HOME</a></li>
+<li><a href="/books/issuebooks/">ISSUE BOOKS</a></li>
+<li><a href="/books/returnbooks/">RETURN BOOKS</a></li>
+<li><a href="/about/">ABOUT US</a></li>
+<li><a href="/contact/">CONTACT US</a></li>
+<li><a href="/profile">VIEW PROFILE</a></li>
+<li><a href="/profile"> HELLO, {{user.first_name}}</a></li>
+<li onclick="return confirm('Do you want to log out')"><a href="/accounts/logout/">LOG OUT</a></li>
+
+
 
 {% else %}
-<li><a href="/accounts/login/#login">login</a></li>
-<li><a href="/accounts/signup/#signup">sign up</a></li>
-{% endif %}
+<li class="active"><a href="/">HOME</a></li>
+<li><a href="/about/">ABOUT US</a></li>
+<li><a href="/contact/">CONTACT US</a></li>
+<li><a href="/accounts/login/#login">LOGIN</a></li>
+<li><a href="/admin">ADMIN LOGIN</a></li>
 
+<li><a href="/accounts/signup/#signup">SIGN UP</a></li>
+{% endif %}
 {% endblock %}

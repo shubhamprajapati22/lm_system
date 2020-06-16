@@ -11,8 +11,10 @@
     <script type="text/javascript" src="{% static 'js/cufon-yui.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/arial.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/cuf_run.js' %}"></script>
+    <script src="{% static 'js/books.js' %}" type="text/javascript"></script>
 
     <link rel="icon" href="{% static 'images/rsmtlogo.png' %}" type="image/icon type">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -32,7 +34,7 @@
                 <div class="clr"></div>
                 <div class="logo">
                     <h1><a href="#">R.S.M.T. Library<br />
-                            <small>Easialy issue and search your favroite books</small></a></h1>
+                            <small>Easialy issue and search your favourite books</small></a></h1>
                 </div>
             </div>
         </div>
@@ -50,10 +52,10 @@
                 <div class="col c1">
                     <h2>About</h2>
                     <p>
-                    Library management system is.....<br>
-                    It has a facility of admin login through....<br>
-                    Overall, this project .....<br>
-                    <a href="/about/">read more..</a>
+                        Library management system is.....<br>
+                        It has a facility of admin login through....<br>
+                        Overall, this project .....<br>
+                        <a href="/about/">read more..</a>
                     </p>
 
                 </div>
@@ -75,11 +77,7 @@
 
                 <ul class="fmenu">
                     {% block footer %}
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="support.html">Support</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contacts</a></li>
+
                     {% endblock %}
                 </ul>
                 <div class="clr"></div>

@@ -1,12 +1,26 @@
-function confirm(){
+function confirmissue(){
 
-    alert("Do you want to issue this book");
-    return;
+    return confirm("Do you want to issue this book");
 
 }
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("myTable2");
+
+    arrow = document.getElementsByClassName("arrow");
+
+    for(i = 0; i < arrow.length; i++){
+        arrow[i].style.display = "none";
+    }
+
+
+
+    arrow[n].style.display = "block";
+   //if(arrow[n].className == "arrow up")
+        arrow[n].className = "arrow down";
+   // else
+        //arrow[n].className = "arrow up";
+
   switching = true;
   // Set the sorting direction to ascending:
   dir = "asc";
@@ -53,6 +67,7 @@ function sortTable(n) {
       set the direction to "desc" and run the while loop again. */
       if (switchcount == 0 && dir == "asc") {
         dir = "desc";
+          arrow[n].className = "arrow up";
         switching = true;
       }
     }

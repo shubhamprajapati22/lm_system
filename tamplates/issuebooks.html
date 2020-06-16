@@ -2,30 +2,28 @@
 {% load static %}
 
 {% block list %}
-<script src="{% static 'js/books.js' %}" type = "text/javascript"></script>
 <style>
     .content .sidebar {
         width: 100%;
         float: left;
         margin-bottom: 120px;
-
     }
+
 </style>
 <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about/#about">About Us</a></li>
-    <li><a href="/contact/">Contact Us</a></li>
+    <li><a href="/">HOME</a></li>
     {% if user.is_authenticated %}
-    <li><a href="/accounts/logout/">log out</a></li>
-    <li><a href="/profile"> hello- {{user.first_name}}</a></li>
-    <li><a href="/profile">view profile</a></li>
-    <li class="active"><a href="/books/issuebooks/">Issue Books</a></li>
-    <li><a href="/books/returnbooks/">return Books</a></li>
+    <li class="active"><a href="/books/issuebooks/">ISSUE BOOKS</a></li>
+    <li><a href="/books/returnbooks/">RETURN BOOKS</a></li>
+    <li><a href="/about/">ABOUT US</a></li>
+    <li><a href="/contact/">CONTACT US</a></li>
+    <li><a href="/profile">VIEW PROFILE</a></li>
+    <li onclick="return confirm('Do you want to log out')"><a href="/accounts/logout/">LOG OUT</a></li>
 
 
     {% else %}
-    <li><a href="/accounts/login/#login">login</a></li>
-    <li><a href="/accounts/signup/#signup">sign up</a></li>
+    <li><a href="/accounts/login/#login">LOGIN</a></li>
+    <li><a href="/accounts/signup/#signup">SIGN UP</a></li>
     {% endif %}
 </ul>
 
@@ -33,6 +31,12 @@
 
 
 {% block base %}
+<div class="home">
+    <form class="example" action="" method="get">
+        <input type="text" placeholder="Search for books..." name="search_value" autocomplete="off">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+</div>
 
 <div class="content">
     <div class="sidebar">
@@ -41,10 +45,16 @@
         <table class="books" id="myTable2">
             <caption>BOOKS</caption>
             <tr>
-                <th onclick="sortTable(0)">book_id</th>
-                <th onclick="sortTable(1)">name</th>
-                <th onclick="sortTable(2)">author</th>
-                <th onclick="sortTable(3)">publication</th>
+                <th onclick="sortTable(0)">Book Id<i class="arrow down"></i></th>
+                <th onclick="sortTable(1)">Name <i class="arrow down"></i></th>
+                <th onclick="sortTable(2)">Author <i class="arrow down"></i></th>
+                <th onclick="sortTable(3)">Publication <i class="arrow down"></i></th>
+                <th colspan="2" class="issue">
+                    <form action="/books/issuebooks" method="get" class="show">
+                        <input type="submit" value="Show All">
+
+                    </form>
+                </th>
             </tr>
             {% for book in books %}
             <tr>
@@ -53,7 +63,7 @@
                 <td style="color: red">{{book.name}}</td>
                 <td style="color: red">{{book.author}}</td>
                 <td style="color: red">{{book.publication}}</td>
-                <td style="color: red">not availabe</td>
+                <td style="color: red" colspan="2" class="issue">not availabe</td>
                 {% else %}
                 <td style="color: green">{{book.code}}</td>
                 <td style="color: green">{{book.name}}</td>
@@ -61,12 +71,13 @@
                 <td style="color: green">{{book.publication}}</td>
                 <td style="color: green">availabe</td>
 
-                <td><form action="issue/" method="post" onsubmit="return confirm()">
-                    {% csrf_token %}
-                    <input type="hidden" name="bookcode" value="{{book.code}}">
-                    <input type="submit" value="Issue">
+                <td class="issue">
+                    <form action="issue/" method="post" onsubmit="return confirmissue()" class="issuebutton">
+                        {% csrf_token %}
+                        <input type="hidden" name="bookcode" value="{{book.code}}">
+                        <input type="submit" value="Issue">
 
-                </form>
+                    </form>
                 </td>
                 {% endif %}
 
@@ -80,18 +91,20 @@
 
 {% block footer %}
 
-<li><a href="/">Home</a></li>
-<li><a href="/about/#about">About Us</a></li>
-<li><a href="/contact/">Contact Us</a></li>
+<li><a href="/">HOME</a></li>
 {% if user.is_authenticated %}
-<li><a href="/accounts/logout/">log out</a></li>
-<li><a href="/profile"> hello- {{user.first_name}}</a></li>
-<li><a href="/profile">view profile</a></li>
-<li class="active"><a href="/books/issuebooks/">Issue Books</a></li>
+<li class="active"><a href="/books/issuebooks/">ISSUE BOOKS</a></li>
+<li><a href="/books/returnbooks/">RETURN BOOKS</a></li>
+<li><a href="/about/">ABOUT US</a></li>
+<li><a href="/contact/">CONTACT US</a></li>
+<li><a href="/profile">VIEW PROFILE</a></li>
+<li><a href="/profile"> HELLO, {{user.first_name}}</a></li>
+<li onclick="return confirm('Do you want to log out')"><a href="/accounts/logout/">LOG OUT</a></li>
+
 
 {% else %}
-<li><a href="/accounts/login/#login">login</a></li>
-<li><a href="/accounts/signup/#signup">sign up</a></li>
+<li><a href="/accounts/login/#login">LOGIN</a></li>
+<li><a href="/accounts/signup/#signup">SIGN UP</a></li>
 {% endif %}
 
 {% endblock %}

@@ -13,6 +13,9 @@ class Books(models.Model):
     subject = models.TextField(blank = True)
     no_of_copies = models.IntegerField()
 
+    def __str__(self):
+        return '%s %s' %(self.code, self.name)
+
 
 class IssueBooks(models.Model):
     code = models.ForeignKey(Books, on_delete=models.CASCADE)

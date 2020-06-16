@@ -244,16 +244,16 @@ ul.ex_menu li a:hover {
 .fbg .c1 {
     padding: 0 16px 0 0;
     width: 296px;
+    position: relative;
+    left: 20%;
 }
 
-.fbg .c2 {
-    padding: 0 16px;
-    width: 240px;
-}
 
 .fbg .c3 {
     padding: 0 0 0 16px;
     width: 290px;
+    position: relative;
+    left: 20%;
 }
 
 .fbg .c1 img {
@@ -388,8 +388,8 @@ ol li .send {
     position: relative;
     left: 22%;
     border: none;
-    background: blue;
-    color: #ffb;
+    background: #adcaf7;
+    color: black;
     font-size: 18px;
     border-radius: 20px;
     outline: none;
@@ -397,8 +397,8 @@ ol li .send {
 
 #sp3:hover {
     cursor: pointer;
-    background: #adcaf7;
-    color: black;
+    background: blue;
+    color: #fbb;
 }
 
 .h1l {
@@ -417,6 +417,12 @@ ol li .send {
 
 .error {
     color: red;
+    font-size: 20px;
+}
+
+.success {
+    color: green;
+    font-size: 22px;
 }
 
 #sem,
@@ -442,19 +448,32 @@ label {
 
 }
 
+.content .sidebar .books {
+    border: 2px solid gray;
+    border-bottom: none;
+}
+
 th,
 td {
     font-stretch: extra-expanded;
     padding: 20px;
     margin: 0px;
     font-size: 16px;
+    text-align: center;
+    border-bottom: 2px solid gray;
+    border-right: 2px solid gray;
+}
+.profile th, .profile td {
+    border-bottom: none;
+    border-right: none;
 }
 
 th {
     font-size: 20px;
     font-weight: 600px;
-    text-align: right;
+    text-align: center;
     cursor: pointer;
+
 }
 
 caption {
@@ -468,5 +487,105 @@ tr:hover {
 }
 
 .books td {
-    text-align: right;
+    text-align: center;
 }
+
+.border {
+    height: 2px;
+    background-color: gray;
+    position: relative;
+    bottom: 168px;
+}
+
+
+form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    float: left;
+    width: 60%;
+    background: #f1f1f1;
+    margin-left: 10%;
+    border: 1px solid grey;
+}
+
+form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #6d8e55;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.issuebutton input {
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding: 0%;
+    margin: 0%;
+    background: #6d8e55;
+    color: white;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+.issue {
+    width: 100px;
+    padding: 0%;
+    border-right: none;
+}
+
+form.example button:hover {
+    background: #245422;
+}
+
+.issuebutton input:hover {
+    background: #245422;
+
+}
+
+form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.home {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.show input {
+    border: none;
+    background: transparent;
+
+    font-size: 16px;
+    color: blue;
+}
+.welcome {
+    width: 100vh;
+}
+
+.glow {
+  color: #000;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
